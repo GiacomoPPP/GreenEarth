@@ -40,32 +40,64 @@ conversionRateFunction = @(t,y) ConversionRate(t, y, r, K, d, conversionRate, ho
 
 plot(T, Y);
 
-%% HHP Model, holling type 3
+%% HHP Model, holling type 3, two healthy plants
 r1 = 2;
-K1 = 200;
+K1 = 300;
 r2 = 4;
 K2 = 1000;
-a = 2.3;
-b = 2;
+a1 = 2.3;
+a2 = 2.3;
 conversionRate1 = 0.15;
 conversionRate2 = 0.7;
 d = 1.9;
-theta = 5;
-nu = 100;
+theta1 = 5;
+theta2 = 5;
+nu1 = 100;
+nu2 = 100;
 maxTime = 300;
 
-hollingType = @(x) HollingTypeThree(x, a, theta, nu);
+hollingType1 = @(x) HollingTypeThree(x, a1, theta1, nu1);
+hollingType2 = @(x) HollingTypeThree(x, a2, theta2, nu2);
 
-initialConditions = [1, 500, 10];
+initialConditions = [1, 500, 100];
 
-HHPModelFunction = @(t,y) HHPModel(theta, y, r1, K1, r2, K2, d, conversionRate1, conversionRate2, hollingType);
+PlotHHPModel( ...
+        r1, ...
+        K1, ...
+        r2, ...
+        K2, ...
+        conversionRate1, ...
+        conversionRate2, ...
+        d, ...
+        hollingType1, ...
+        hollingType2, ...
+        initialConditions, ...
+        maxTime ...
+    );
 
-[T,Y] = ode23(HHPModelFunction, [0, maxTime], initialConditions);
+%% HHP Model 
 
-HHPPlot = plot(T, Y);
+r1 = 2;
+K1 = 300;
+r2 = 4;
+K2 = 1000;
+a1 = 2.3;
+a2 = 2.3;
+conversionRate1 = 0.15;
+conversionRate2 = 0.7;
+d = 1.9;
+theta1 = 5;
+theta2 = 5;
+nu1 = 100;
+nu2 = 100;
+maxTime = 300;
 
-set(HHPPlot(1), 'Color', '#971899', 'LineWidth', 2.5);
-set(HHPPlot(2), 'Color', '#61b310', 'LineWidth', 2.5);
-set(HHPPlot(3), 'Color', 'red', 'LineWidth', 2.5);
+hollingType1 = @(x) HollingTypeThree(x, a1, theta1, nu1);
+hollingType2 = @(x) HollingTypeThree(x, a2, theta2, nu2);
 
-legend('H1','H2','P'); grid on;
+initialConditions = [1, 500, 100];
+
+PlotHHPModel(r1, K1, r2, K2, conversionRate1, conversionRate2, d, hollingType1, hollingType2, initialConditions, maxTime);
+
+
+
