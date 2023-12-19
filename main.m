@@ -18,7 +18,11 @@ conversionRateFunction = @(t,y) ConversionRate(t, y, r, K, d, conversionRate, ho
 
 [T,Y] = ode23(conversionRateFunction, [0, maxTime], initialConditions);
 
-conversionRatePlot = plot(T, Y);
+
+ConversionRatePlot = plot(T, Y);
+
+set(ConversionRatePlot(1), 'Color', '#61b310', 'LineWidth', 2.5);
+set(ConversionRatePlot(2), 'Color', '#971899', 'LineWidth', 2.5);
 
 %% Gause type model with conversion rate, holling type 3
 r = 3;
