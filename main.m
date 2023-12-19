@@ -78,9 +78,9 @@ PlotHHPModel( ...
 %% HHP Model 
 
 r1 = 2;
-K1 = 300;
+K1 = 500;
 r2 = 4;
-K2 = 1000;
+K2 = 500;
 a1 = 2.3;
 a2 = 2.3;
 conversionRate1 = 0.15;
@@ -95,9 +95,39 @@ maxTime = 300;
 hollingType1 = @(x) HollingTypeThree(x, a1, theta1, nu1);
 hollingType2 = @(x) HollingTypeThree(x, a2, theta2, nu2);
 
-initialConditions = [1, 500, 100];
+initialConditions = [100, 500, 100];
 
-PlotHHPModel(r1, K1, r2, K2, conversionRate1, conversionRate2, d, hollingType1, hollingType2, initialConditions, maxTime);
+PlotHHPModel( ...
+        r1, ...
+        K1, ...
+        r2, ...
+        K2, ...
+        conversionRate1, ...
+        conversionRate2, ...
+        d, ...
+        hollingType1, ...
+        hollingType2, ...
+        initialConditions, ...
+        maxTime ...
+    );
+
+%% HPP Model 
+
+r = 4;
+K = 1000;
+a1 = 2.8;
+a2 = 2.7;
+conversionRate = 0.7;
+d1 = 1.65;
+d2 = 1.63;
+theta = 5;
+nu = 100;
+maxTime = 500;
+
+hollingType1 = @(x) HollingTypeThree(x, a1, theta, nu);
+hollingType2 = @(x) HollingTypeThree(x, a2, theta, nu);
 
 
+initialConditions = [500, 1, 1];
 
+PlotHPPModel(r, K, conversionRate, d1, d2, hollingType1, hollingType2, initialConditions, maxTime);
