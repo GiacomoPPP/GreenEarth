@@ -44,15 +44,15 @@ conversionRateFunction = @(t,y) ConversionRate(t, y, r, K, d, conversionRate, ho
 
 plot(T, Y);
 
-%% HHP Model, holling type 3, two healthy plants
+%% HHP Model, holling type 3, limit cycle
 r1 = 2;
 K1 = 300;
 r2 = 4;
 K2 = 1000;
-a1 = 2.3;
-a2 = 2.3;
+a1 = 2.4;
+a2 = 2.4;
 conversionRate1 = 0.15;
-conversionRate2 = 0.7;
+conversionRate2 = 0.8;
 d = 1.9;
 theta1 = 5;
 theta2 = 5;
@@ -79,7 +79,7 @@ PlotHHPModel( ...
         maxTime ...
     );
 
-%% HHP Model 
+%% HHP Model, holling type 3, stable equilibrium
 
 r1 = 2;
 K1 = 500;
