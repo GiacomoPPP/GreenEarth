@@ -12,9 +12,9 @@ maxTime = 700;
 
 initialConditions = [10,1];
 
-hollingType = @(x) HollingTypeTwo(x, a, b);
+hollingType = @(x)HollingTypeTwo(x, a, b);
 
-conversionRateFunction = @(t,y) ConversionRate(t, y, r, K, d, conversionRate, hollingType);
+conversionRateFunction = @(t,y)ConversionRate(t, y, r, K, d, conversionRate, hollingType);
 
 [T,Y] = ode23(conversionRateFunction, [0, maxTime], initialConditions);
 
@@ -23,7 +23,11 @@ ConversionRatePlot = plot(T, Y);
 
 set(ConversionRatePlot(1), 'Color', '#61b310', 'LineWidth', 2.5);
 set(ConversionRatePlot(2), 'Color', '#971899', 'LineWidth', 2.5);
+%% HollingType 2 funcition plot
 
+hollingTypeTwo = @(x) HollingTypeTwo(x, a, b);
+hollingTypeTwoPlot = fplot(hollingTypeTwo, [0,100]);
+set(hollingTypeTwoPlot, 'LineWidth', 2.5);
 %% Gause type model with conversion rate, holling type 3
 r = 3;
 K = 1000;
@@ -119,11 +123,11 @@ PlotHHPModel( ...
 
 r = 4;
 K = 1000;
-a1 = 2.8;
-a2 = 2.7;
+a1 = 2.5;
+a2 = 2.4;
 conversionRate = 0.7;
-d1 = 1.65;
-d2 = 1.63;
+d1 = 1.3; % 1.65, con 1.3 su entrambi le soluzioni sono molto più smooth
+d2 = 1.2; % 1.6
 theta = 5;
 nu = 100;
 maxTime = 500;
@@ -132,6 +136,11 @@ hollingType1 = @(x) HollingTypeThree(x, a1, theta, nu);
 hollingType2 = @(x) HollingTypeThree(x, a2, theta, nu);
 
 
-initialConditions = [500, 1, 1];
+initialConditions = [500, 10, 10];
 
 PlotHPPModel(r, K, conversionRate, d1, d2, hollingType1, hollingType2, initialConditions, maxTime);
+
+%% HollingType 3 function plot
+hollingTypeThree = @(x) HollingTypeThree(x, a1, theta, nu);
+hollingTypeThreePlot = fplot(hollingTypeThree, [-1,450]);
+set(hollingTypeThreePlot, 'LineWidth', 2.5);
