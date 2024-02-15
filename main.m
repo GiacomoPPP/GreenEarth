@@ -33,7 +33,18 @@ hollingTypeTwoPlot = fplot(hollingTypeTwo, [0,100]);
 h = yline(b.^-1, 'r-', 'LineWidth', 2);
 ylim([0 11])
 set(hollingTypeTwoPlot, 'LineWidth', 2.5);
-%% Gause type model with conversion rate, holling type 3
+
+%% HollingType 3 function plot
+a = 2.3;
+theta = 5;
+nu = 220;
+hollingTypeThree = @(x) HollingTypeThree(x, a, theta, nu);
+hollingTypeThreePlot = fplot(hollingTypeThree, [-1,450]);
+set(hollingTypeThreePlot, 'LineWidth', 2.5);
+limit = a;
+h = yline(limit, 'r-', 'LineWidth', 2);
+
+%% Gause type model, holling type 3
 r = 3;
 K = 1000;
 a = 5;
@@ -134,8 +145,8 @@ K = 1000;
 a1 = 2.5;
 a2 = 2.4;
 conversionRate = 0.7;
-d1 = 1.3; % 1.65, con 1.3 su entrambi le soluzioni sono molto più smooth
-d2 = 1.2; % 1.6
+d1 = 1.3;
+d2 = 1.2;
 theta = 5;
 nu = 100;
 maxTime = 500;
@@ -147,10 +158,3 @@ hollingType2 = @(x) HollingTypeThree(x, a2, theta, nu);
 initialConditions = [500, 10, 10];
 
 PlotHPPModel(r, K, conversionRate, d1, d2, hollingType1, hollingType2, initialConditions, maxTime);
-
-%% HollingType 3 function plot
-hollingTypeThree = @(x) HollingTypeThree(x, a1, theta, nu);
-hollingTypeThreePlot = fplot(hollingTypeThree, [-1,450]);
-set(hollingTypeThreePlot, 'LineWidth', 2.5);
-limit = a1;
-h = yline(limit, 'r-', 'LineWidth', 2);
