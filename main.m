@@ -18,7 +18,6 @@ gauseHollingThreeFunction = @(t,y)Gause(t, y, r, K, d, conversionRate, hollingTy
 
 [T,Y] = ode23(gauseHollingThreeFunction, [0, maxTime], initialConditions);
 
-
 gauseHollingTwoPlot = plot(T, Y);
 
 set(gauseHollingTwoPlot(1), 'Color', '#61b310', 'LineWidth', 2.5);
@@ -76,7 +75,7 @@ a1 = 2.4;
 a2 = 2.4;
 conversionRate1 = 0.15;
 conversionRate2 = 0.8;
-d = 1.9;
+d = 1.7;
 theta1 = 5;
 theta2 = 5;
 nu1 = 100;
@@ -108,11 +107,11 @@ r1 = 2;
 K1 = 500;
 r2 = 4;
 K2 = 500;
-a1 = 2.3;
-a2 = 2.3;
+a1 = 2.4;
+a2 = 2.4;
 conversionRate1 = 0.15;
-conversionRate2 = 0.7;
-d = 1.9;
+conversionRate2 = 0.8;
+d = 1.7;
 theta1 = 5;
 theta2 = 5;
 nu1 = 100;
@@ -143,10 +142,10 @@ PlotHHPModel( ...
 r = 4;
 K = 1000;
 a1 = 2.5;
-a2 = 2.4;
+a2 = 2.3;
 conversionRate = 0.7;
-d1 = 1.3;
-d2 = 1.2;
+d1 = 1.6;
+d2 = 1.4;
 theta = 5;
 nu = 100;
 maxTime = 500;
