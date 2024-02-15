@@ -5,28 +5,33 @@ clear;
 r = 3;
 K = 1000;
 a = 5;
-b = 2;
-conversionRate = 0.25;
+b = 0.095;
+conversionRate = 0.120;
 d = 1.2;
-maxTime = 700;
+maxTime = 500;
 
 initialConditions = [10,1];
 
 hollingType = @(x)HollingTypeTwo(x, a, b);
 
-conversionRateFunction = @(t,y)ConversionRate(t, y, r, K, d, conversionRate, hollingType);
+gauseHollingThreeFunction = @(t,y)Gause(t, y, r, K, d, conversionRate, hollingType);
 
-[T,Y] = ode23(conversionRateFunction, [0, maxTime], initialConditions);
+[T,Y] = ode23(gauseHollingThreeFunction, [0, maxTime], initialConditions);
 
 
-ConversionRatePlot = plot(T, Y);
+gauseHollingTwoPlot = plot(T, Y);
 
-set(ConversionRatePlot(1), 'Color', '#61b310', 'LineWidth', 2.5);
-set(ConversionRatePlot(2), 'Color', '#971899', 'LineWidth', 2.5);
+set(gauseHollingTwoPlot(1), 'Color', '#61b310', 'LineWidth', 2.5);
+set(gauseHollingTwoPlot(2), 'Color', '#971899', 'LineWidth', 2.5);
 %% HollingType 2 funcition plot
+
+a = 5;
+b = 0.095;
 
 hollingTypeTwo = @(x) HollingTypeTwo(x, a, b);
 hollingTypeTwoPlot = fplot(hollingTypeTwo, [0,100]);
+h = yline(b.^-1, 'r-', 'LineWidth', 2);
+ylim([0 11])
 set(hollingTypeTwoPlot, 'LineWidth', 2.5);
 %% Gause type model with conversion rate, holling type 3
 r = 3;
@@ -35,18 +40,21 @@ a = 5;
 conversionRate = 0.25;
 d = 1.2;
 theta = 5;
-nu = 100;
-maxTime = 1000;
+nu = 220;
+maxTime = 200;
 
-initialConditions = [10,1];
+initialConditions = [600,150];
 
 hollingType = @(x) HollingTypeThree(x, a, theta, nu);
 
-conversionRateFunction = @(t,y) ConversionRate(t, y, r, K, d, conversionRate, hollingType);
+gauseHollingThreeFunction = @(t,y) Gause(t, y, r, K, d, conversionRate, hollingType);
 
-[T,Y] = ode23(conversionRateFunction, [0, maxTime], initialConditions);
+[T,Y] = ode23(gauseHollingThreeFunction, [0, maxTime], initialConditions);
 
-plot(T, Y);
+gauseHollingTwoPlot = plot(T, Y);
+
+set(gauseHollingTwoPlot(1), 'Color', '#61b310', 'LineWidth', 2.5);
+set(gauseHollingTwoPlot(2), 'Color', '#971899', 'LineWidth', 2.5);
 
 %% HHP Model, holling type 3, limit cycle
 r1 = 2;
@@ -144,3 +152,5 @@ PlotHPPModel(r, K, conversionRate, d1, d2, hollingType1, hollingType2, initialCo
 hollingTypeThree = @(x) HollingTypeThree(x, a1, theta, nu);
 hollingTypeThreePlot = fplot(hollingTypeThree, [-1,450]);
 set(hollingTypeThreePlot, 'LineWidth', 2.5);
+limit = a1;
+h = yline(limit, 'r-', 'LineWidth', 2);

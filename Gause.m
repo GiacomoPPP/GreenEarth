@@ -1,4 +1,4 @@
-function ds = ConversionRate(~, initialConditions, r, K, d, conversionRate, holling)
+function ds = Gause(~, initialConditions, r, K, d, conversionRate, holling)
     % Initial conditions
     X = initialConditions(1);
     Y = initialConditions(2);
